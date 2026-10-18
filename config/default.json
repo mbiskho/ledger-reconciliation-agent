@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "model": "gpt-4o",
+    "max_steps": 15,
+    "max_cost_usd": 0.50,
+    "temperature": 0.0
+  },
+  "ledger": {
+    "num_transactions": 5000,
+    "break_rate": 0.15,
+    "date_range_days": 90,
+    "currencies": ["USD", "EUR", "GBP", "JPY", "CHF"],
+    "seed": 42
+  },
+  "guardrails": {
+    "max_proposals_per_break": 10,
+    "max_adjustment_amount": 1000000.0,
+    "min_match_confidence": 0.5
+  },
+  "evaluation": {
+    "min_resolution_rate": 0.80,
+    "max_false_resolution_rate": 0.05,
+    "max_escalation_rate": 0.30
+  },
+  "fuzzy_match": {
+    "threshold": 85
+  },
+  "fx_rates": {
+    "USD": 1.0,
+    "EUR": 0.92,
+    "GBP": 0.79,
+    "JPY": 149.0,
+    "CHF": 0.88
+  }
+}
