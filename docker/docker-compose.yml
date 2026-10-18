@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ledger-rec-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../data:/app/data
+      - ../results:/app/results
+      - ../config:/app/config
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: serve --port 8000
+
+  reconcile:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ledger-rec-runner
+    volumes:
+      - ../data:/app/data
+      - ../results:/app/results
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: reconcile --data-dir /app/data/synthetic --output /app/results
+    profiles:
+      - batch
